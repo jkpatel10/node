@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Task</title>
+
+  <!-- CSS LINK (IMPORTANT) -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <div class="app">
+    <h1>✏️ Update Task</h1>
+
+    <form action="/updateData" method="post" class="form">
+      <input type="hidden" name="id" value="<%=singleData.id%>">
+
+      <input
+        type="text"
+        name="task"
+        value="<%= singleData.task %>"
+        required
+      >
+
+      <select name="priority">
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+   <div class="phone">
+  <h1>🐻 To-Do List</h1>
+
+  <form action="/addData" method="post" class="form">
+    <input type="text" name="task" class="input" placeholder="Add a new task..." required>
+
+    <select name="priority" class="select">
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+
+    <button>Add</button>
+  </form>
+
+  <div class="tasks">
+    <% task.map((e)=>{ %>
+      <div class="task <%= e.priority %>">
+        <div>
+          <p class="task-text"><%= e.task %></p>
+          <span class="task-priority"><%= e.priority %></span>
+        </div>
+
+        <div class="actions">
+          <a href="/editData?id=<%=e.id%>"><button>Edit</button></a>
+          <a href="/deleteData/<%=e.id%>"><button class="delete">Delete</button></a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+</body>
+</html>
