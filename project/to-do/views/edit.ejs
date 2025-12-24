@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Task</title>
-
-  <!-- CSS LINK (IMPORTANT) -->
   <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -17,13 +15,15 @@
       <input type="hidden" name="id" value="<%=singleData.id%>">
 
       <input
+        class="input"
         type="text"
         name="task"
         value="<%= singleData.task %>"
         required
       >
 
-      <select name="priority">
+      <select name="priority" class="input">
+        <option hidden>priority</option>
         <option value="high">High</option>
         <option value="medium">Medium</option>
         <option value="low">Low</option>

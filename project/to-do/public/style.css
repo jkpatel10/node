@@ -44,7 +44,8 @@ body {
 }
 
 .select {
-  padding: 10px 2px;
+  padding: 10px 12px;
+  letter-spacing: 1px;
   border-radius: 14px;
   border: none;
   background: #fff;
@@ -125,4 +126,8 @@ body {
   font-size: 11px;
   background: #cfb283;
   cursor: pointer;
+}
+
+.app h1{
+  margin-bottom: 30px;
 }

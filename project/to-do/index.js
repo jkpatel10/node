@@ -1,11 +1,12 @@
 const express = require("express")
 port = 1008
+const path = require("path")
 
 const app = express()
 
 app.set("view engine","ejs")
 app.use(express.urlencoded({extended:true}))
-app.use(express.static("public"));
+app.use("/",express.static(path.join(__dirname,"public")));
 
 let task = []
 
