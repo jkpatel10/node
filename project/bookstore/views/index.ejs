@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookstore</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:
+        linear-gradient(rgba(255,255,255,.85),rgba(255,255,255,.85)),
+        url("https://images.unsplash.com/photo-1507842217343-583bb7270b66");
+    background-size:cover;
+    background-attachment:fixed;
+    padding:40px;
+    color:#333;
+}
+
+.hero{
+    max-width:1200px;
+    margin:auto;
+    margin-bottom:60px;
+    padding:100px 90px;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    background:
+        linear-gradient(
+            270deg,
+            rgba(255,255,255,0.9) 0%,
+            rgba(255,255,255,0.7) 35%,
+            rgba(255,255,255,0.2) 60%,
+            rgba(255,255,255,0) 100%
+        ),
+        url("https://img.freepik.com/free-photo/top-view-books-with-copy-space_23-2148827187.jpg?semt=ais_hybrid&w=740&q=80");
+    background-size:cover;
+    background-position:right;
+    border-radius:18px;
+    box-shadow:0 30px 60px rgba(0,0,0,.2);
+}
+
+.hero h1{
+    font-size:44px;
+    font-weight:700;
+    margin-bottom:12px;
+    color:#222;
+}
+
+.hero p{
+    font-size:16px;
+    color:#555;
+    margin-bottom:26px;
+}
+
+.hero button{
+    padding:14px 34px;
+    background:#ff6b6b;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(255,107,107,.35);
+    transition:0.3s;
+}
+
+.hero button:hover{
+    background:#ff5252;
+    transform:translateY(-2px);
+}
+
+form{
+    max-width:1200px;
+    margin:auto;
+    margin-bottom:60px;
+    background:#fff;
+    padding:25px;
+    display:flex;
+    gap:16px;
+    border-radius:12px;
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+}
+
+input,select{
+    flex:1;
+    padding:14px;
+    border-radius:6px;
+    border:1px solid #ddd;
+}
+
+input[type="submit"]{
+    background:#ff6b6b;
+    color:white;
+    border:none;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.section-title{
+    max-width:1200px;
+    margin:0 auto 30px;
+    font-size:28px;
+    font-weight:700;
+}
+
+.books{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:30px;
+}
+
+.book-card{
+    background:#fff;
+    border-radius:14px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.book-card:hover{
+    transform:translateY(-8px);
+}
+
+.book-img{
+    height:150px;
+    border-radius:10px;
+    background:linear-gradient(135deg,#e6e6e6,#f5f5f5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.book-card h3{
+    font-size:17px;
+    margin-bottom:6px;
+}
+
+.book-card p{
+    font-size:14px;
+    color:#777;
+}
+
+.category{
+    display:inline-block;
+    margin:10px 0;
+    padding:6px 14px;
+    background:#f1f1f1;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-top:15px;
+}
+
+.actions button{
+    padding:8px 14px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+}
+
+.edit{
+    background:#4CAF50;
+}
+
+.delete{
+    background:#e74c3c;
+}
+
+@media(max-width:768px){
+    .hero{
+        justify-content:center;
+        text-align:center;
+        padding:70px 35px;
+        background-position:center;
+    }
+
+    .hero h1,
+    .hero p,
+    .hero button{
+        max-width:100%;
+    }
+}
+</style>
+
+</head>
+<body>
+<div class="hero">
+    <div class="txt">
+        <h1>40% Discount On Books</h1>
+    <p>By Susan Merrill</p>
+    <button>Shop Now</button>
+    </div>
+</div>
+
+<form action="/addData" method="post">
+    <input type="text" placeholder="Book Name" name="name">
+    <input type="text" placeholder="Author Name" name="author">
+    <select name="category">
+        <option hidden>Choose Category</option>
+        <option value="novel">Novel</option>
+        <option value="comics">Comics</option>
+        <option value="motivation">Motivation</option>
+        <option value="history">History</option>
+    </select>
+    <input type="submit" value="Add Book">
+</form>
+
+<h2 class="section-title">Popular Books</h2>
+
+<div class="books">
+<% data.map((e)=>{ %>
+    <div class="book-card">
+        <div class="book-img">📘</div>
+        <h3><%= e.name %></h3>
+        <p>by <%= e.author %></p>
+        <span class="category"><%= e.category %></span>
+
+        <div class="actions">
+            <a href="/editData?id=<%= e.id %>">
+                <button class="edit"><i class="fa-solid fa-pen"></i></button>
+            </a>
+            <a href="/deleteData?id=<%= e.id %>">
+                <button class="delete"><i class="fa-solid fa-trash"></i></button>
+            </a>
+        </div>
+    </div>
+<% }) %>
+</div>
+
+</body>
+</html>
