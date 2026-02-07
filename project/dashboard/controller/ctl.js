@@ -23,7 +23,6 @@ module.exports.loginAdmin = async(req,res)=>{
 }
 
 module.exports.logout = (req,res)=>{
-    res.clearCookie("admin")
     res.redirect("/")
 }
 
