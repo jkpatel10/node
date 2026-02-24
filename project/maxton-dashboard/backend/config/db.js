@@ -1,11 +1,16 @@
 const mongoose = require("mongoose")
 
-mongoose.connect("mongodb://localhost:27017/dashboard")
-
-const db = mongoose.connection
-
-db.once("open",(err)=>{
-    err ? console.log(err) : console.log("db connected");
+mongoose.connect("mongodb+srv://khushi:2106@cluster0.tqamdpj.mongodb.net/?appName=Cluster0").then(()=>{
+    console.log("db is connencted");
 })
+.catch((err)=>{
+    console.log(err);
+}
+)
+// const db = mongoose.connection
 
-module.exports = db
+// db.once("open",(err)=>{
+//     err ? console.log(err) : console.log("db connected");
+// })
+
+// module.exports = db

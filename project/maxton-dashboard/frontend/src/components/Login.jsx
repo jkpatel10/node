@@ -25,7 +25,6 @@ export default function Login() {
 return (
   <div className="min-h-screen flex items-center justify-center bg-[#0f1120] text-slate-200">
 
-    {/* Login Card */}
     <div className="w-full max-w-md bg-[#1c223c] border border-slate-800 rounded-2xl p-8 shadow-xl">
 
       {/* Title */}

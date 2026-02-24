@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Aside from "./Aside";
 
 export default function ViewAdmin() {
     const [record,setRecord] = useState([])
@@ -30,10 +31,10 @@ export default function ViewAdmin() {
     }
  
   return (
-  <div className="min-h-screen bg-[#0f1120] text-slate-200 p-6">
-
+  <div className="min-h-screen bg-[#0f1120] flex text-slate-200">
+    <Aside/>
     {/* Card */}
-    <div className="max-w-5xl mx-auto bg-[#1c223c] border border-slate-800 rounded-2xl p-6 shadow-xl">
+    <div className="max-w-5xl min-h-100 max-h-130 mx-auto bg-[#1c223c] border border-slate-800 rounded-2xl m-6 p-6 shadow-xl">
 
       {/* Title */}
       <h1 className="text-2xl font-bold mb-6 text-center">
@@ -41,7 +42,7 @@ export default function ViewAdmin() {
       </h1>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto max-h-[400px] overflow-y-auto hide-scrollbar">
 
         <table className="w-full text-sm text-left">
 

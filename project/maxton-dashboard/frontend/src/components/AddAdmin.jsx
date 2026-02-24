@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Aside from "./Aside";
 
 export default function AddAdmin() {
   const navigate =  useNavigate();
@@ -22,10 +23,10 @@ export default function AddAdmin() {
   }
   
  return (
-  <div className="min-h-screen flex items-center justify-center bg-[#0f1120] text-slate-200">
-
+  <div className="min-h-screen flex items-center bg-[#0f1120] text-slate-200">
+    <Aside/>
     {/* Form Card */}
-    <div className="w-full max-w-md bg-[#1c223c] border border-slate-800 rounded-2xl p-8 shadow-xl">
+    <div className="w-full max-w-md bg-[#1c223c] mx-auto border border-slate-800 rounded-2xl p-8 shadow-xl">
 
       {/* Title */}
       <h1 className="text-2xl font-bold text-center mb-2">
