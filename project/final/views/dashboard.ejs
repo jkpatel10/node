@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 Bunny Pastel Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+/* Background gradient animation */
+body {
+  background: linear-gradient(135deg, #dbeafe, #f5f3ff, #eedbe5, #e0e7ff);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.smooth { transition: all 0.3s ease; }
+
+/* Glass effect */
+.glass {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+}
+
+/* Card hover effect */
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.03);
+  background: linear-gradient(135deg,#dbeafe,#f5f3ff,#fbcfe8,#c7d2fe);
+  background-size: 400% 400%;
+  animation: gradientBG 8s ease infinite;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+}
+
+/* Navigation hover */
+.nav-hover:hover {
+  background: linear-gradient(to right,#dbeafe,#d1cbf0,#fbcfe8,#c7d2fe);
+  color: black;
+  border-radius: 0.75rem;
+  padding-left: 1rem;
+}
+
+/* Progress bar animation */
+.progress-fill { width: 0%; animation: fill 1s forwards; }
+@keyframes fill { to { width: var(--w); } }
+
+/* Bunny wiggle */
+@keyframes wiggle { 0%,100%{ transform: rotate(0deg);} 25%{ transform: rotate(8deg);} 75%{ transform: rotate(-8deg);} }
+.wiggle:hover { animation: wiggle 0.5s infinite; }
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  font-size: 1.2rem;
+  animation: floatUp 3s linear infinite;
+  opacity: 0.7;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1);}
+  50% { transform: translateY(-20px) scale(1.2);}
+  100% { transform: translateY(-40px) scale(1);}
+}
+
+/* Additional floating hearts animation */
+@keyframes floatHeart {
+  0% { transform: translateY(0) scale(1);}
+  50% { transform: translateY(-8px) scale(1.2);}
+  100% { transform: translateY(-16px) scale(1);}
+}
+.animate-floatHeart { animation: floatHeart 2s ease-in-out infinite; }
+
+/* Bounce animation */
+@keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-6px); } }
+.animate-bounce { animation: bounce 1s infinite alternate; }
+
+</style>
+</head>
+
+<body class="min-h-screen font-sans text-gray-700 relative overflow-hidden">
+
+<!-- Floating hearts -->
+<div class="heart text-pink-300 left-10 top-40">💖</div>
+<div class="heart text-purple-300 left-32 top-64">💜</div>
+<div class="heart text-blue-300 left-56 top-32">💙</div>
+<div class="heart text-pink-200 left-72 top-80">💖</div>
+
+<div class="flex min-h-screen">
+
+  <!-- Sidebar -->
+  <aside class="w-72 glass p-6 flex flex-col justify-between relative overflow-hidden">
+    <div class="flex flex-col items-center mb-6">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 flex items-center justify-center text-3xl wiggle cursor-pointer">🐇</div>
+      <h2 class="text-2xl font-bold mt-3 text-gray-800">Bunny Admin</h2>
+      <p class="text-sm text-gray-500 mt-1 text-center">Keep hopping productive 🐰✨</p>
+    </div>
+
+    <nav class="flex-1 mt-6 space-y-4 text-gray-700 text-lg">
+      <a href="#" class="nav-hover block px-3 py-2 rounded-lg smooth">🏠 Home</a>
+      <a href="/task/taskList" class="nav-hover block px-3 py-2 rounded-lg smooth">📝 Tasks</a>
+      <a href="#" class="nav-hover block px-3 py-2 rounded-lg smooth">📊 Analytics</a>
+      <a href="#" class="nav-hover block px-3 py-2 rounded-lg smooth">💼 Projects</a>
+      <a href="#" class="nav-hover block px-3 py-2 rounded-lg smooth">⚙️ Settings</a>
+      <a href="#" class="nav-hover block px-3 py-2 rounded-lg smooth">📩 Messages</a>
+    </nav>
+
+    <div class="mt-6 space-y-4">
+      <!-- Pending -->
+      <div class="glass p-4 rounded-2xl bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 hover:from-purple-200 hover:via-pink-200 hover:to-blue-200 cursor-pointer flex items-center justify-between shadow-lg relative overflow-hidden">
+        <div class="flex items-center space-x-3">
+          <div>
+            <p class="text-sm font-medium text-gray-700">Pending Tasks</p>
+            <h3 class="font-bold text-lg mt-1 text-gray-800">7</h3>
+          </div>
+        </div>
+        <span class="text-yellow-300 animate-pulse text-xl">✨</span>
+      </div>
+
+      <!-- Completed -->
+      <div class="glass p-4 rounded-2xl bg-gradient-to-r from-purple-200 via-pink-200 to-blue-200 hover:from-pink-200 hover:via-blue-200 hover:to-purple-200 cursor-pointer flex items-center justify-between shadow-lg relative overflow-hidden">
+        <div class="flex items-center space-x-3">
+          <div>
+            <p class="text-sm font-medium text-gray-700">Completed Today</p>
+            <h3 class="font-bold text-lg mt-1 text-gray-800">12</h3>
+          </div>
+        </div>
+           <span class="text-purple-300 animate-pulse text-xl">✨</span>
+      </div>
+
+      <!-- Notifications -->
+      <div class="glass p-4 rounded-2xl bg-gradient-to-r from-pink-200 via-blue-200 to-purple-200 hover:from-blue-200 hover:via-purple-200 hover:to-pink-200 cursor-pointer flex items-center justify-between shadow-lg relative overflow-hidden">
+        <div class="flex items-center space-x-3">
+          <div>
+            <p class="text-sm font-medium text-gray-700">Notifications</p>
+            <h3 class="font-bold text-lg mt-1 text-gray-800">3</h3>
+          </div>
+        </div>
+        <span class="text-purple-300 animate-pulse text-xl">✨</span>
+      </div>
+    </div>
+
+    <div class="text-sm text-gray-400 mt-6 text-center">
+      Stay hopping productive ✨
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-8 space-y-8">
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+      <div>
+        <h1 class="text-4xl font-bold text-gray-800">Dashboard Overview 🐇</h1>
+        <p class="text-gray-500 mt-1">Cute pastel gradient with glassy blur ✨🫧</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <input type="text" placeholder="Search..." class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-300 smooth">
+        <a href="/task/taskForm">
+          <button class="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 hover:from-blue-300 hover:via-purple-300 hover:to-pink-300 px-4 py-2 rounded-full smooth">+ Add Task</button>
+        </a>
+        <div class="w-12 h-12 rounded-full flex items-center justify-center wiggle cursor-pointer bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 text-2xl">🐇</div>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="glass p-6 card-hover smooth">
+        <p class="text-gray-700 font-medium">Total Users</p>
+        <h2 class="text-3xl font-bold mt-2">1,245</h2>
+      </div>
+      <div class="glass p-6 card-hover smooth">
+        <p class="text-gray-700 font-medium">Active Tasks</p>
+        <h2 class="text-3xl font-bold mt-2">532</h2>
+      </div>
+      <div class="glass p-6 card-hover smooth">
+        <p class="text-gray-700 font-medium">Completed</p>
+        <h2 class="text-3xl font-bold mt-2">1,024</h2>
+      </div>
+      <div class="glass p-6 card-hover smooth">
+        <p class="text-gray-700 font-medium">Pending</p>
+        <h2 class="text-3xl font-bold mt-2">210</h2>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="glass p-6 shadow-lg">
+        <h2 class="text-xl font-semibold mb-4">Tasks Completed</h2>
+        <canvas id="lineChart"></canvas>
+      </div>
+      <div class="glass p-6 shadow-lg">
+        <h2 class="text-xl font-semibold mb-4">Revenue</h2>
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Progress Bars -->
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-6 card-hover smooth">
+        <p class="text-gray-700">Frontend Progress</p>
+        <div class="w-full bg-white/50 h-3 rounded-full mt-2">
+          <div class="h-3 rounded-full progress-fill bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300" style="--w:80%"></div>
+        </div>
+      </div>
+      <div class="glass p-6 card-hover smooth">
+        <p class="text-gray-700">Backend Progress</p>
+        <div class="w-full bg-white/50 h-3 rounded-full mt-2">
+          <div class="h-3 rounded-full progress-fill bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300" style="--w:70%"></div>
+        </div>
+      </div>
+      <div class="glass p-6 card-hover smooth">
+        <p class="text-gray-700">Testing Progress</p>
+        <div class="w-full bg-white/50 h-3 rounded-full mt-2">
+          <div class="h-3 rounded-full progress-fill bg-gradient-to-r from-pink-300 via-blue-300 to-purple-300" style="--w:60%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chart Scripts -->
+<script>
+const lineCtx = document.getElementById('lineChart').getContext('2d');
+const gradientLine = lineCtx.createLinearGradient(0,0,0,400);
+gradientLine.addColorStop(0,'rgba(147,197,253,0.8)');
+gradientLine.addColorStop(1,'rgba(251,191,211,0.3)');
+
+new Chart(lineCtx,{
+  type:'line',
+  data:{
+    labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    datasets:[{
+      data:[5,8,6,10,12,7,9],
+      borderColor: gradientLine,
+      backgroundColor: gradientLine,
+      tension:0.4,
+      fill:true,
+      pointRadius:6,
+      pointBackgroundColor:'#93c5fd'
+    }]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{display:false}},
+    scales:{y:{display:false,grid:{drawTicks:false,color:'transparent'}},x:{display:false,grid:{drawTicks:false,color:'transparent'}}}
+  }
+});
+
+const barCtx = document.getElementById('barChart').getContext('2d');
+const gradientBar = barCtx.createLinearGradient(0,0,0,400);
+gradientBar.addColorStop(0,'rgba(251,191,211,0.9)');
+gradientBar.addColorStop(1,'rgba(203,213,255,0.3)');
+
+new Chart(barCtx,{
+  type:'bar',
+  data:{
+    labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    datasets:[{
+      data:[1200,1500,1000,1800,1700,1900,2000],
+      backgroundColor: gradientBar,
+      borderRadius:10,
+      barPercentage:0.6
+    }]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{display:false}},
+    scales:{y:{display:false,grid:{drawTicks:false,color:'transparent'}},x:{display:false,grid:{drawTicks:false,color:'transparent'}}}
+  }
+});
+</script>
+
+</body>
+</html>

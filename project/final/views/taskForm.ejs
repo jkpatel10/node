@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 Add Task</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #dbeafe, #f5f3ff, #fbcfe8, #e0e7ff);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+    }
+
+    .button-hover:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #dbeafe, #f5f3ff, #fbcfe8, #e0e7ff);
+    }
+
+    .smooth {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center">
+  <div class="glass p-10 rounded-3xl shadow-lg w-full max-w-md space-y-6">
+    <h1 class="text-3xl font-bold text-gray-800 text-center">🌸 Add Task</h1>
+    <form action="/task/taskList" method="post" class="flex flex-col space-y-4">
+      <input type="text" name="task" placeholder="Enter Your Task" 
+             class="px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 smooth">
+      <input type="text" name="description" placeholder="Enter Your Description" 
+             class="px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 smooth">
+      <input type="text" name="priourity" placeholder="Enter Your Priority" 
+             class="px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 smooth">
+      <button type="submit" 
+              class="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 hover:from-blue-300 hover:via-purple-300 hover:to-pink-300 px-5 py-3 rounded-2xl font-bold text-gray-800 smooth shadow-lg">
+        Add Task
+      </button>
+    </form>
+  </div>
+</body>
+
+</html>

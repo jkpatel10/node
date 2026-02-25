@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 Bunny Cute Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(120deg, #fce4ec, #e0f7fa, #f3e5f5, #fff1f8);
+      background-size: 400% 400%;
+      animation: gradientBG 25s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glass card rows */
+    .glass-row {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, background 0.4s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .glass-row:hover {
+      transform: translateY(-4px) scale(1.02);
+      background: linear-gradient(135deg, #fce4ec, #f3e5f5, #e0f7fa);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Clean gradient buttons without icons */
+    .btn {
+      background: linear-gradient(90deg, #a5b4fc, #f9a8d4);
+      color: white;
+      font-weight: 600;
+      border-radius: 1.5rem;
+      padding: 0.4rem 1rem;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #818cf8, #f472b6);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    thead th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      vertical-align: middle;
+      color: #374151;
+    }
+
+    /* Status badges */
+    .status {
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+      color: white;
+    }
+
+    .status-low { background: #f87171; }       /* red-ish */
+    .status-medium { background: #fbbf24; }    /* yellow-ish */
+    .status-high { background: #60a5fa; }      /* blue-ish */
+  </style>
+</head>
+
+<body>
+  <div class="max-w-5xl w-full">
+    <h1 class="text-5xl font-bold text-center mb-12 text-gray-800">🌸 Bunny Task Table</h1>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr>
+            <th>Task 🐰</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="space-y-4">
+          <% data.map(task => { %>
+          <tr class="glass-row mb-4">
+            <td class="font-medium"><%= task.task %></td>
+            <td><%= task.description %></td>
+            <td>
+              <% if(task.priourity === 'High'){ %>
+              <span class="status status-high">High</span>
+              <% } else if(task.priourity === 'Medium'){ %>
+              <span class="status status-medium">Medium</span>
+              <% } else { %>
+              <span class="status status-low">Low</span>
+              <% } %>
+            </td>
+            <td class="flex justify-center gap-3">
+              <a href="/task/editData?id=<%= task.id %>" class="btn">Edit</a>
+              <a href="/task/deleteData?id=<%= task.id %>" class="btn">Delete</a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
